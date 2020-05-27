@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1> <strong>Crypto Currency News</strong> </h1>
+<hr><br/>
+
+
+<table class="table table-dark table table-bordered table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name </th>
+      <th scope="col">Price </th>
+      <th scope="col">Day High </th>
+      <th scope="col">Day Low </th>
+      <th scope="col">Market Cap </th>
+    </tr>
+  </thead>
+{% for key,value in price.DISPLAY.items %}
+	<tbody>
+    	<tr>
+      	<td>{{key}}</td>
+      	<td>{{value.USD.PRICE}}</td>
+      	<td>{{value.USD.HIGHDAY}}</td>
+      	<td>{{value.USD.LOWDAY}}</td>
+      	<td>{{value.USD.MKTCAP}}</td>
+    	</tr>
+{% endfor %}
+  	</tbody>
+</table>
+<br/>
+
+<hr>
+<br/>
+		
+<div class="container">
+	<div class="row">
+		{%for x in api.Data %}
+			<div class="px-sm-3">
+				<div class="card" style="width: 20rem;">
+				  <img src="{{x.imageurl}}" class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">{{x.title}}</h5>
+				    <p class="card-text">{{x.body}}</p>
+				    <a href="{{x.url}}" class="btn btn-primary">Read more...</a>
+				  </div>
+				</div>
+				<br/>
+			</div>
+		{% endfor %}}
+	</div>
+</div>		
+	
+{% endblock %}
